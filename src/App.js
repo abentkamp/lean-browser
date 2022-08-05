@@ -3,7 +3,7 @@ import './App.css';
 import Editor from "@monaco-editor/react";
 
 
-var wsUrl = "ws://localhost:9876";
+var wsUrl = `ws://${window.location.hostname}:9876`;
 var pseudoUri = "pseudo://uri"
 
 class App extends React.Component {
