@@ -74,9 +74,9 @@ class App extends React.Component {
 
   severityLeanToMonaco(severity) {
     switch (severity) {
+      case 3: return this.monaco.MarkerSeverity.Info;
       case 2: return this.monaco.MarkerSeverity.Warning;
       case 1: return this.monaco.MarkerSeverity.Error;
-      case 0: return this.monaco.MarkerSeverity.Info;
     }
   }
 
