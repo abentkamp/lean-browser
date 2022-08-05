@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Editor from "@monaco-editor/react";
 
-var wsUrl = location.origin.replace(/^http/, 'ws');
+var wsUrl = window.location.origin.replace(/^http/, 'ws');
 var pseudoUri = "pseudo://uri"
 
 class App extends React.Component {

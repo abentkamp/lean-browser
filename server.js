@@ -3,12 +3,13 @@ const express = require("express");
 const app = express()
 const path = require("path")
 
+const PORT = process.env.PORT || 3000;
 
-const myServer = app.listen(9876)
+const server = app
+  .use(express.static('./build'))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-const wsServer = new WebSocket.Server({
-    noServer: true
-})
+const wss = new WebSocket.Server({ server })
 
 function send(data) {
     const str = JSON.stringify(data) + "\r\n";
@@ -22,21 +23,21 @@ function send(data) {
     lean.stdin.uncork();
 }
 
-wsServer.on("connection", function(ws) {    // what should a websocket do on connection
+wss.on("connection", function(ws) {    // what should a websocket do on connection
     ws.on("message", function(msg) {        // what to do on message event
         send(JSON.parse(msg.toString("utf8")));
     })
 })
 
-myServer.on('upgrade', async function upgrade(request, socket, head) {
-    wsServer.handleUpgrade(request, socket, head, function done(ws) {
-      wsServer.emit('connection', ws, request);
-    });
-});
+// server.on('upgrade', async function upgrade(request, socket, head) {
+//     wss.handleUpgrade(request, socket, head, function done(ws) {
+//         wss.emit('connection', ws, request);
+//     });
+// });
 
 const { spawn } = require('child_process');
 
-const lean = spawn('/app/lean-4.0.0-nightly-2022-08-05-linux/bin/lean', ['--server']);
+const lean = spawn('lean', ['--server']);
 
 var header = ""
 var content = ""
@@ -67,7 +68,7 @@ function read () {
             content += str;
             if (contentLength <= 0) {
                 
-                wsServer.clients.forEach(function each(client) {
+                wss.clients.forEach(function each(client) {
                     if (client.readyState === WebSocket.OPEN) {     // check if client is ready
                         client.send(content);
                     }
