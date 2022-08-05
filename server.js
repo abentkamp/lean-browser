@@ -39,12 +39,12 @@ wss.on("connection", function(ws) {    // what should a websocket do on connecti
 
 const { spawn } = require('child_process');
 
-let leanCmd = "/app/lean-4.0.0-nightly-2022-08-05-linux/bin/lean";
+let leanCmd = "./lean";
 if (!fs.existsSync(leanCmd)) {
     leanCmd = "lean"
 }
 
-const lean = spawn('lean', ['--server']);
+const lean = spawn(leanCmd, ['--server']);
 
 var header = ""
 var content = ""
