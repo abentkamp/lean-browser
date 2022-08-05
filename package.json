@@ -15,9 +15,10 @@
   },
   "scripts": {
     "start": "concurrently \"cd websocket-server && node index.js\" \"react-scripts start\"",
-    "build": "react-scripts build",
+    "build": "react-scripts build && (cd websocket-server && npm install)",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-prebuild": "sh ./install_lean.sh"
   },
   "eslintConfig": {
     "extends": [

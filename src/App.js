@@ -77,6 +77,7 @@ class App extends React.Component {
       case 3: return this.monaco.MarkerSeverity.Info;
       case 2: return this.monaco.MarkerSeverity.Warning;
       case 1: return this.monaco.MarkerSeverity.Error;
+      default: throw new Error("Unknown Severity")
     }
   }
 
