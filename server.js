@@ -2,6 +2,8 @@ const WebSocket = require("ws");
 const express = require("express");
 const app = express()
 const path = require("path")
+const fs = require("fs");
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -36,6 +38,11 @@ wss.on("connection", function(ws) {    // what should a websocket do on connecti
 // });
 
 const { spawn } = require('child_process');
+
+let leanCmd = "/app/lean-4.0.0-nightly-2022-08-05-linux/bin/lean";
+if (!fs.existsSync(leanCmd)) {
+    leanCmd = "lean"
+}
 
 const lean = spawn('lean', ['--server']);
 
