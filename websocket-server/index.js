@@ -36,7 +36,7 @@ myServer.on('upgrade', async function upgrade(request, socket, head) {
 
 const { spawn } = require('child_process');
 
-const lean = spawn('lean', ['--server']);
+const lean = spawn('/app/lean-4.0.0-nightly-2022-08-05-linux/bin/lean', ['--server']);
 
 var header = ""
 var content = ""
