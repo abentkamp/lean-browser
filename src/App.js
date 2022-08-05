@@ -58,9 +58,9 @@ class App extends React.Component {
               const marker = {
                 severity: this.severityLeanToMonaco(diag.severity),
                 message: diag.message,
-                startLineNumber: diag.range.start.line,
+                startLineNumber: diag.range.start.line + 1,
                 startColumn: diag.range.start.character + 1,
-                endLineNumber: diag.range.end.line,
+                endLineNumber: diag.range.end.line + 1,
                 endColumn: diag.range.end.character + 1,
               };
               markers.push(marker);
