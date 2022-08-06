@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "concurrently \"cd websocket-server && node index.js\" \"react-scripts start\"",
+    "dev": "concurrently \"node server.js\" \"react-scripts start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

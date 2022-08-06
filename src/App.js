@@ -2,7 +2,11 @@ import React from 'react';
 import './App.css';
 import Editor from "@monaco-editor/react";
 
+
 var wsUrl = window.location.origin.replace(/^http/, 'ws');
+if (window.location.hostname === "localhost") {
+  wsUrl = "ws://localhost:8080"
+}
 var pseudoUri = "pseudo://uri"
 
 class App extends React.Component {
